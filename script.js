@@ -1,6 +1,13 @@
 function corDeFundo(evento) {
   const ponto = evento.target;
-  ponto.className = 'cor-de-fundo';
+  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    if (itensDaLista[elemento] === ponto) {
+      itensDaLista[elemento].className = 'cor-de-fundo';
+    } else {
+      itensDaLista[elemento].className = '';
+    }
+  }
 }
 
 function adicionar() {
