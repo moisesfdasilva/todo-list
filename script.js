@@ -40,3 +40,12 @@ function adicionar() {
 }
 
 document.getElementById('criar-tarefa').addEventListener('click', adicionar);
+
+function apagar() {
+  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    itensDaLista[elemento].remove();
+  }
+}
+
+document.getElementById('apaga-tudo').addEventListener('click', apagar);
