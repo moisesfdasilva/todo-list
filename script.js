@@ -1,7 +1,10 @@
-// function adicionar() {
-//   const elementoDaLista = document.getElementById('texto-tarefa').innerText;
-//   document.getElementById('texto-tarefa').appendChild(document.createElement('li'));
-//   document.querySelectorAll('#texto-tarefa li')[0].innerText = elementoDaLista;
-// }
+function adicionar() {
+  const elementoNovo = document.createElement('li');
+  const elementoDaLista = document.getElementById('texto-tarefa').value;
+  elementoNovo.innerText = elementoDaLista;
+  document.getElementById('lista-tarefas').appendChild(elementoNovo);
+  console.log(document.querySelectorAll('#lista-tarefas li'));
+  document.getElementById('texto-tarefa').value = '';
+}
 
-// document.getElementById('criar-tarefa').addEventListener('click', adicionar);
+document.getElementById('criar-tarefa').addEventListener('click', adicionar);
