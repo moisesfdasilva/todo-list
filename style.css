@@ -3,6 +3,11 @@
   width: 60px;
 }
 
+#remover-finalizados {
+  height: 25px;
+  width: 140px;
+}
+
 .cor-de-fundo {
   background-color: gray;
 }

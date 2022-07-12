@@ -1,6 +1,8 @@
+const listaLi = '#lista-tarefas li';
+
 function tarefaConcluida(evento) {
   const ponto = evento.target;
-  const itensDaLista = document.getElementsByTagName('li');
+  const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     const item = itensDaLista[elemento];
     const riscoClasse = 'completed';
@@ -14,7 +16,7 @@ function tarefaConcluida(evento) {
 
 function corDeFundo(evento) {
   const ponto = evento.target;
-  const itensDaLista = document.getElementsByTagName('li');
+  const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     const item = itensDaLista[elemento];
     const corClasse = 'cor-de-fundo';
@@ -32,7 +34,7 @@ function adicionar() {
   elementoNovo.innerText = elementoDaLista;
   document.getElementById('lista-tarefas').appendChild(elementoNovo);
   document.getElementById('texto-tarefa').value = '';
-  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     itensDaLista[elemento].addEventListener('dblclick', tarefaConcluida);
     itensDaLista[elemento].addEventListener('click', corDeFundo);
@@ -42,10 +44,22 @@ function adicionar() {
 document.getElementById('criar-tarefa').addEventListener('click', adicionar);
 
 function apagar() {
-  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     itensDaLista[elemento].remove();
   }
 }
 
 document.getElementById('apaga-tudo').addEventListener('click', apagar);
+
+function removerFinalizados() {
+  const itensDaLista = document.querySelectorAll(listaLi);
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    const item = itensDaLista[elemento];
+    if (item.className === 'completed') {
+      item.remove();
+    }
+  }
+}
+
+document.getElementById('remover-finalizados').addEventListener('click', removerFinalizados);
