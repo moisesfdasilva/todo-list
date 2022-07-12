@@ -1,11 +1,27 @@
+function tarefaConcluida(evento) {
+  const ponto = evento.target;
+  const itensDaLista = document.getElementsByTagName('li');
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    const item = itensDaLista[elemento];
+    const riscoClasse = 'completed';
+    if (item === ponto && ponto.className.includes(riscoClasse)) {
+      item.className = item.className.replace(riscoClasse, '');
+    } else if (item === ponto) {
+      item.className = item.className.concat(riscoClasse);
+    }
+  }
+}
+
 function corDeFundo(evento) {
   const ponto = evento.target;
-  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  const itensDaLista = document.getElementsByTagName('li');
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
-    if (itensDaLista[elemento] === ponto) {
-      itensDaLista[elemento].className = 'cor-de-fundo';
-    } else {
-      itensDaLista[elemento].className = '';
+    const item = itensDaLista[elemento];
+    const corClasse = 'cor-de-fundo';
+    if (item.className.includes(corClasse)) {
+      item.className = item.className.replace(corClasse, '');
+    } else if (item === ponto) {
+      item.className = item.className.concat(corClasse);
     }
   }
 }
@@ -16,9 +32,10 @@ function adicionar() {
   elementoNovo.innerText = elementoDaLista;
   document.getElementById('lista-tarefas').appendChild(elementoNovo);
   document.getElementById('texto-tarefa').value = '';
-  const contador = document.querySelectorAll('#lista-tarefas li').length;
-  for (let elemento = 0; elemento < contador; elemento += 1) {
-    document.getElementsByTagName('li')[elemento].addEventListener('click', corDeFundo);
+  const itensDaLista = document.querySelectorAll('#lista-tarefas li');
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    itensDaLista[elemento].addEventListener('dblclick', tarefaConcluida);
+    itensDaLista[elemento].addEventListener('click', corDeFundo);
   }
 }
 

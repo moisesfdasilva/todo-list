@@ -6,3 +6,7 @@
 .cor-de-fundo {
   background-color: gray;
 }
+
+.completed {
+  text-decoration: line-through solid black;
+}
