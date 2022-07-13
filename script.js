@@ -5,7 +5,7 @@ function tarefaConcluida(evento) {
   const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     const item = itensDaLista[elemento];
-    const riscoClasse = 'completed';
+    const riscoClasse = ' completed';
     if (item === ponto && ponto.className.includes(riscoClasse)) {
       item.className = item.className.replace(riscoClasse, '');
     } else if (item === ponto) {
@@ -19,7 +19,7 @@ function corDeFundo(evento) {
   const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     const item = itensDaLista[elemento];
-    const corClasse = 'cor-de-fundo';
+    const corClasse = ' cor-de-fundo';
     if (item.className.includes(corClasse)) {
       item.className = item.className.replace(corClasse, '');
     } else if (item === ponto) {
@@ -56,10 +56,45 @@ function removerFinalizados() {
   const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
     const item = itensDaLista[elemento];
-    if (item.className === 'completed') {
+    if (item.className.includes('completed')) {
       item.remove();
     }
   }
 }
 
 document.getElementById('remover-finalizados').addEventListener('click', removerFinalizados);
+
+function salvarLista() {
+  const itensDaLista = document.querySelectorAll(listaLi);
+  const arrayDaLista = [];
+  const arrayDaClasse = [];
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    arrayDaLista.push((itensDaLista[elemento]).innerText);
+    arrayDaClasse.push((itensDaLista[elemento]).className);
+  }
+  localStorage.setItem('lista', JSON.stringify(arrayDaLista));
+  localStorage.setItem('classe', JSON.stringify(arrayDaClasse));
+}
+
+document.getElementById('salvar-tarefas').addEventListener('click', salvarLista);
+
+function carregarLista() {
+  if (localStorage.getItem('lista') !== null) {
+    const arrayDaLista = JSON.parse(localStorage.getItem('lista'));
+    const arrayDaClasse = JSON.parse(localStorage.getItem('classe'));
+    for (let indice = 0; indice < arrayDaLista.length; indice += 1) {
+      const elementoNovo = document.createElement('li');
+      elementoNovo.innerText = arrayDaLista[indice];
+      elementoNovo.className = arrayDaClasse[indice];
+      document.getElementById('lista-tarefas').appendChild(elementoNovo);
+    }
+  }
+
+  const itensDaLista = document.querySelectorAll(listaLi);
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    itensDaLista[elemento].addEventListener('dblclick', tarefaConcluida);
+    itensDaLista[elemento].addEventListener('click', corDeFundo);
+  }
+}
+
+window.onload = carregarLista;
