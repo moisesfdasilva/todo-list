@@ -3,7 +3,7 @@
   width: 60px;
 }
 
-#remover-finalizados , #salvar-tarefas {
+#remover-finalizados , #salvar-tarefas , #mover-cima , #mover-baixo {
   height: 25px;
   width: 155px;
 }
