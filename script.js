@@ -1,4 +1,5 @@
 const listaLi = '#lista-tarefas li';
+const selected = 'cor-de-fundo';
 
 function tarefaConcluida(evento) {
   const ponto = evento.target;
@@ -100,9 +101,8 @@ window.onload = carregarLista;
 
 function movimentoCima() {
   const itensDaLista = document.querySelectorAll(listaLi);
-  const corClasse = 'cor-de-fundo';
   for (let elemento = 1; elemento < itensDaLista.length; elemento += 1) {
-    if (itensDaLista[elemento].className.includes(corClasse)) {
+    if (itensDaLista[elemento].className.includes(selected)) {
       const cloneDoAnterior = document.createElement('li');
       cloneDoAnterior.innerText = itensDaLista[elemento - 1].innerText;
       cloneDoAnterior.className = itensDaLista[elemento - 1].className;
@@ -122,9 +122,8 @@ document.getElementById('mover-cima').addEventListener('click', movimentoCima);
 
 function movimentoBaixo() {
   const itensDaLista = document.querySelectorAll(listaLi);
-  const corClasse = 'cor-de-fundo';
   for (let elemento = 0; elemento < (itensDaLista.length - 1); elemento += 1) {
-    if (itensDaLista[elemento].className.includes(corClasse)) {
+    if (itensDaLista[elemento].className.includes(selected)) {
       const cloneDoPosterior = document.createElement('li');
       cloneDoPosterior.innerText = itensDaLista[elemento + 1].innerText;
       cloneDoPosterior.className = itensDaLista[elemento + 1].className;
@@ -141,3 +140,15 @@ function movimentoBaixo() {
 }
 
 document.getElementById('mover-baixo').addEventListener('click', movimentoBaixo);
+
+function removerSelecionado() {
+  const itensDaLista = document.querySelectorAll(listaLi);
+  for (let elemento = 0; elemento < itensDaLista.length; elemento += 1) {
+    const item = itensDaLista[elemento];
+    if (item.className.includes(selected)) {
+      item.remove();
+    }
+  }
+}
+
+document.getElementById('remover-selecionado').addEventListener('click', removerSelecionado);

@@ -8,6 +8,11 @@
   width: 155px;
 }
 
+#remover-selecionado {
+  height: 25px;
+  width: 314px;
+}
+
 .cor-de-fundo {
   background-color: gray;
 }
