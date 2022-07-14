@@ -97,22 +97,16 @@ function carregarLista() {
   ativarSelecao();
 }
 
-window.onload = carregarLista;
-
 function movimentoCima() {
   const itensDaLista = document.querySelectorAll(listaLi);
   for (let elemento = 1; elemento < itensDaLista.length; elemento += 1) {
     if (itensDaLista[elemento].className.includes(selected)) {
-      const cloneDoAnterior = document.createElement('li');
-      cloneDoAnterior.innerText = itensDaLista[elemento - 1].innerText;
-      cloneDoAnterior.className = itensDaLista[elemento - 1].className;
-
-      const clone = document.createElement('li');
-      clone.innerText = itensDaLista[elemento].innerText;
-      clone.className = itensDaLista[elemento].className;
-
-      itensDaLista[elemento].replaceWith(cloneDoAnterior);
-      itensDaLista[elemento - 1].replaceWith(clone);
+      const terceiroA = itensDaLista[elemento - 1].innerText;
+      const terceiroB = itensDaLista[elemento - 1].className;
+      itensDaLista[elemento - 1].innerText = itensDaLista[elemento].innerText;
+      itensDaLista[elemento - 1].className = itensDaLista[elemento].className;
+      itensDaLista[elemento].innerText = terceiroA;
+      itensDaLista[elemento].className = terceiroB;
     }
   }
   ativarSelecao();
@@ -122,18 +116,15 @@ document.getElementById('mover-cima').addEventListener('click', movimentoCima);
 
 function movimentoBaixo() {
   const itensDaLista = document.querySelectorAll(listaLi);
-  for (let elemento = 0; elemento < (itensDaLista.length - 1); elemento += 1) {
+  for (let elemento = (itensDaLista.length - 2); elemento >= 0; elemento -= 1) {
     if (itensDaLista[elemento].className.includes(selected)) {
-      const cloneDoPosterior = document.createElement('li');
-      cloneDoPosterior.innerText = itensDaLista[elemento + 1].innerText;
-      cloneDoPosterior.className = itensDaLista[elemento + 1].className;
+      const terceiroA = itensDaLista[elemento].innerText;
+      const terceiroB = itensDaLista[elemento].className;
 
-      const clone = document.createElement('li');
-      clone.innerText = itensDaLista[elemento].innerText;
-      clone.className = itensDaLista[elemento].className;
-
-      itensDaLista[elemento].replaceWith(cloneDoPosterior);
-      itensDaLista[elemento + 1].replaceWith(clone);
+      itensDaLista[elemento].innerText = itensDaLista[elemento + 1].innerText;
+      itensDaLista[elemento].className = itensDaLista[elemento + 1].className;
+      itensDaLista[elemento + 1].innerText = terceiroA;
+      itensDaLista[elemento + 1].className = terceiroB;
     }
   }
   ativarSelecao();
@@ -152,3 +143,5 @@ function removerSelecionado() {
 }
 
 document.getElementById('remover-selecionado').addEventListener('click', removerSelecionado);
+
+window.onload = carregarLista;
