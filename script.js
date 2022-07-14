@@ -120,7 +120,6 @@ function movimentoBaixo() {
     if (itensDaLista[elemento].className.includes(selected)) {
       const terceiroA = itensDaLista[elemento].innerText;
       const terceiroB = itensDaLista[elemento].className;
-
       itensDaLista[elemento].innerText = itensDaLista[elemento + 1].innerText;
       itensDaLista[elemento].className = itensDaLista[elemento + 1].className;
       itensDaLista[elemento + 1].innerText = terceiroA;
