@@ -15,7 +15,7 @@ Aplicação em funcionamento.
 
 ## Acesso à Aplicação
 ### Instalação e Execução
-Primeiramente deve ser realizado o Fork e o Clone do repositório. Dentro da pasta do repositório inicie o index.html.
+Primeiramente deve ser realizado o Clone do repositório. Dentro do diretório raiz do repositório inicie o index.html.
 
 ## Contribuintes
 |Nome|GitHub|
